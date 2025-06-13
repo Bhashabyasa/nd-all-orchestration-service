@@ -24,8 +24,8 @@ options:
 # images:
 # - 'gcr.io/${PROJECT_ID}/${_SERVICE}:${SHORT_SHA}'
 substitutions:
-    _SERVICE: dev-ekstep--nd-all-orchestration-service
-    _SAMPLE_DIR: dev-ekstep--nd-all-orchestration-service
+    _SERVICE: dev-ekstep-nd-all-orchestration-service
+    _SAMPLE_DIR: dev-ekstep-nd-all-orchestration-service
     _SERVICE_REGION: asia-south1
     _CLOUDSDK_VERSION: latest
     _DOCKER_VERSION: latest
