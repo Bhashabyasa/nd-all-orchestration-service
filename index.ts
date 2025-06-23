@@ -6,7 +6,6 @@ import os from 'os';
 import compression from 'compression'
 import sqlRouter, { sqlDatabaseConnection } from './src/sql_module';
 import mongoDbRouter, { mongodbConnection } from './src/mongo_module/modules';
-import { connectRedis } from './src/mongo_module/modules/redisClient';
 dotenv.config();
 
 const numCPUs = os.cpus().length;
@@ -26,8 +25,7 @@ if (cluster.isPrimary) {
   });
 } else {
   (async () => {
-    await connectRedis();
-
+    
     const app = express();
     const PORT: number = parseInt(process.env.PORT || '3009');
     const HOST: string = '0.0.0.0';
@@ -56,7 +54,8 @@ if (cluster.isPrimary) {
           if (!origin || allowedOrigins.includes(origin)) {
             callback(null, true);
           } else {
-            callback(new Error('Not allowed by CORS'));
+            console.log("allowed origins", allowedOrigins)
+            callback(new Error('Not allowed by CORS' + origin));
           }
         },
         credentials: true,
